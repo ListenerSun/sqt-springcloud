@@ -1,0 +1,36 @@
+server:
+  port: 9527
+  
+
+spring:
+   application:
+     name: springcloud-zuul                                 #microservicecloud-dept
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+#      defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+  instance:
+    instance-id: springcloud-zuul-9527
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+
+#路由访问映射规则
+zuul:
+  #ignored-services: microservicecloud-dept
+  prefix: /sqt             #配置统一的前缀 http://myzuul9527:9527/sqt/springcloud-dept-provider/dept/list
+  ignored-services: "*"    #禁止使用原服务的名称进行访问
+  routes:
+    mydept.serviceId: springcloud-dept-provider
+    mydept.path: /zuulsqt/**         #代理的名字  http://myzuul9527:9527/sqt/zuulsqt/dept/get/1
+
+
+
+#设置在eureka服务中的点击信息
+info:
+  app.name: 小孙App
+  company.name: www.sqt.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+

@@ -1,0 +1,5 @@
+com\sqt\service\DeptClientService.class
+com\sqt\entities\Dept.class
+com\sqt\service\DeptClientServiceFallbackFactory$1.class
+com\sqt\service\DeptService.class
+com\sqt\service\DeptClientServiceFallbackFactory.class
